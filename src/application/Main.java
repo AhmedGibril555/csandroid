@@ -1,16 +1,16 @@
-package application;
-
+package com.gluonapplication22;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class Main extends Pane
+public class CalCulaTor1 extends Pane
 {
-	public Main()
+	public CalCulaTor1()
 	{
 		paintcal();
+                cal();
 	}
     private final FlowPane pane =new FlowPane();
     TextArea textArea =new TextArea();
@@ -138,9 +138,53 @@ public class Main extends Pane
     	this.getChildren().add(pane);
     }
 
-
-
-
-
-
+ int flag ;
+     boolean put =true ;//why put??????????????????????????????????????????????/
+     double count1 ;
+     String value="";
+    private void cal()
+    {
+    	btnadd.setOnAction(e->
+    	{if(!textArea.getText().isEmpty()&&!textArea.getText().endsWith("+")&&!textArea.getText().endsWith("-")&&!textArea.getText().endsWith("*")&&!textArea.getText().endsWith("/"))
+    	{flag=0;textArea.setText(textArea.getText()+"+");put=true;}});
+    	btnsub.setOnAction(e->
+    	{if(!textArea.getText().isEmpty()&&!textArea.getText().endsWith("+")&&!textArea.getText().endsWith("-")&&!textArea.getText().endsWith("*")&&!textArea.getText().endsWith("/"))
+    	{flag=1;textArea.setText(textArea.getText()+"-");put=true;}
+    	});
+    	btnmul.setOnAction(e->
+    	{if(!textArea.getText().isEmpty()&&!textArea.getText().endsWith("+")&&!textArea.getText().endsWith("-")&&!textArea.getText().endsWith("*")&&!textArea.getText().endsWith("/"))
+    	{flag=2;textArea.setText(textArea.getText()+"*");put=true;}});
+    	btndiv.setOnAction(e->
+    	{if(!textArea.getText().isEmpty()&&!textArea.getText().endsWith("+")&&!textArea.getText().endsWith("-")&&!textArea.getText().endsWith("*")&&!textArea.getText().endsWith("/"))
+    	{flag=3;textArea.setText(textArea.getText()+"/");put=true;}});
+        try{
+        btn1.setOnAction(e->{if(textArea.getText().contains("=")||textArea.getText().contains("invalid exprission"))textArea.clear(); textArea.setText(textArea.getText()+"1");});
+    	}catch(Exception n){textArea.setText("invalid exprission");}
+        btn2.setOnAction(e->{if(textArea.getText().contains("=")||textArea.getText().contains("invalid exprission"))textArea.clear(); textArea.setText(textArea.getText()+"2");});
+    	btn3.setOnAction(e->{if(textArea.getText().contains("=")||textArea.getText().contains("invalid exprission"))textArea.clear(); textArea.setText(textArea.getText()+"3");});
+    	btn4.setOnAction(e->{if(textArea.getText().contains("=")||textArea.getText().contains("invalid exprission"))textArea.clear(); textArea.setText(textArea.getText()+"4");});
+    	btn5.setOnAction(e->{if(textArea.getText().contains("=")||textArea.getText().contains("invalid exprission"))textArea.clear(); textArea.setText(textArea.getText()+"5");});
+    	btn6.setOnAction(e->{if(textArea.getText().contains("=")||textArea.getText().contains("invalid exprission"))textArea.clear(); textArea.setText(textArea.getText()+"6");});
+    	btn7.setOnAction(e->{if(textArea.getText().contains("=")||textArea.getText().contains("invalid exprission"))textArea.clear(); textArea.setText(textArea.getText()+"7");});
+    	btn8.setOnAction(e->{if(textArea.getText().contains("=")||textArea.getText().contains("invalid exprission"))textArea.clear(); textArea.setText(textArea.getText()+"8");});
+    	btn9.setOnAction(e->{if(textArea.getText().contains("=")||textArea.getText().contains("invalid exprission"))textArea.clear(); textArea.setText(textArea.getText()+"9");});
+    	btn0.setOnAction(e->{if(textArea.getText().contains("=")||textArea.getText().contains("invalid exprission"))textArea.clear(); textArea.setText(textArea.getText()+"0");});
+    	btndot.setOnAction(e->{if(put&&!textArea.getText().contains("=")&&!textArea.getText().contains("invalid exprission")){textArea.setText(textArea.getText()+".");put=false;}if(textArea.getText().contains("=")||textArea.getText().contains("invalid exprission")){textArea.clear();textArea.setText(textArea.getText()+".");put=false;}});
+    	btnenter.setOnAction(e->{if(!textArea.getText().isEmpty())textArea.setText(textArea.getText().substring(0, textArea.getText().length()-1));});
+    	btn111.setOnAction(e->{textArea.clear();});
+    	btnpr1.setOnAction(e->{textArea.setText(textArea.getText()+'(');});
+    	btnpr2.setOnAction(e->{if(textArea.getText().contains("("))textArea.setText(textArea.getText()+')');});
+    	btnequal.setOnAction(e->
+    	{
+            try
+            {
+            if(!textArea.getText().contains("="))
+            {
+            String newline ="\n";
+    		textArea.setText(textArea.getText()+newline+"="+eval(textArea.getText()));
+            }
+            }catch(Exception n){textArea.setText("invalid exprission");}
+    	});
+    	
+    }
 }
